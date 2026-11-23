@@ -1,0 +1,55 @@
+mode: patient
+paths:
+  may_rcbv: null
+  october_rcbv: null
+  ct: null
+  dose: null
+  may_anatomy: null
+  october_anatomy: null
+  may_study: null
+  october_study: null
+  brain_mask: null
+  reference_roi: null
+  exclusions: null
+  october_brain_mask: null
+  ct_brain_mask: null
+  anatomical_roi: null
+series_uids: {}
+anatomy_selection_reason: {}
+rcbv:
+  scaling: {may: auto, october: auto}
+  # Optional documented affine overrides in stored-value space: [slope, intercept].
+  scale_override: {}
+  quantitative_evidence: null
+  exclude_negative: false
+registration:
+  # Set true only after confirming the same DICOM frame and within-session alignment.
+  same_frame_rcbv: {may: false, october: false}
+  # Select rigid explicitly when within-session alignment needs correction.
+  rcbv_method: {may: identity, october: identity}
+  review: {status: pending, reviewer: null, notes: null, fingerprint: null}
+  thresholds: {}
+dose:
+  interpretation: unverified
+  evidence: null
+  alpha_beta_gy: null
+  accumulation_method: null
+  treatment_timing: null
+  # Optional ITK .tfm verified to map CT LPS mm to dose LPS mm.
+  ct_to_dose_transform: null
+  spatial_evidence: null
+  allow_relative_analysis: false
+normalization:
+  method: white_matter
+  min_roi_voxels: 20
+  reference_description: null
+analysis:
+  baseline_floor: 0.05
+  absolute: 0.25
+  percent: null
+  robust_sigma: null
+  min_region_ml: 0
+  sensitivity: [0.15, 0.25, 0.4, 0.6]
+  dose_thresholds: [20, 30, 40, 50, 60, 70, 80]
+  dose_bin_edges: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+  overlay_dose_threshold: 40
